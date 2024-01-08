@@ -1,4 +1,4 @@
-package kr.co.unipoint;
+package com.example;
 
 import java.util.function.Consumer;
 

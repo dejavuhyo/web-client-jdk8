@@ -1,4 +1,4 @@
-package kr.co.unipoint;
+package com.example;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.ssl.SslContextBuilder;
