@@ -1,18 +1,18 @@
-package kr.co.unipoint;
+package com.example;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
-public class RestRequest {
+public class Rest {
 
     private final WebClient webClient;
 
-    public RestRequest(WebClient webClient) {
+    public Rest(WebClient webClient) {
         this.webClient = webClient;
     }
 
-    public String reqPost(String baseUrl, String url, String json, String token) {
+    public String postRequest(String baseUrl, String url, String json, String token) {
         return webClient.mutate()
                 .baseUrl(baseUrl)
                 .build()
@@ -26,7 +26,7 @@ public class RestRequest {
                 .block();
     }
 
-    public String reqGet(String baseUrl, String url, String token) {
+    public String getRequest(String baseUrl, String url, String token) {
         String param = "";
         return webClient.mutate()
                 .baseUrl(baseUrl)
@@ -41,8 +41,8 @@ public class RestRequest {
     }
 
     public static void main(String[] args) {
-        RestRequest req = new RestRequest(WebClient.builder().build());
-        System.out.println("reqPost = " + req.reqPost("http://localhost:8081", "/board2", "{}", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"));
-        System.out.println("reqGet = " + req.reqGet("http://localhost:8081", "/board", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"));
+        Rest rest = new Rest(WebClient.builder().build());
+        System.out.println("reqPost = " + rest.postRequest("http://localhost:8081", "/board2", "{}", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"));
+        System.out.println("reqGet = " + rest.getRequest("http://localhost:8081", "/board", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"));
     }
 }
